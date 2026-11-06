@@ -1,0 +1,1214 @@
+{
+  "info": {
+    "name": "API Currículo (Express + Neon + Vercel)",
+    "description": "Altere baseUrl e os IDs em Variables. Os requests de criação salvam o ID automaticamente.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://SEU-PROJETO.vercel.app"
+    },
+    {
+      "key": "pessoaId",
+      "value": "1"
+    },
+    {
+      "key": "formacaoId",
+      "value": "1"
+    },
+    {
+      "key": "experienciaId",
+      "value": "1"
+    },
+    {
+      "key": "projetoId",
+      "value": "1"
+    },
+    {
+      "key": "habilidadeId",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "Relacionamentos",
+      "item": [
+        {
+          "name": "Currículo completo da pessoa",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/pessoas/{{pessoaId}}/curriculo",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pessoas",
+                "{{pessoaId}}",
+                "curriculo"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Formações da pessoa",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/pessoas/{{pessoaId}}/formacoes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pessoas",
+                "{{pessoaId}}",
+                "formacoes"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Experiências da pessoa",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/pessoas/{{pessoaId}}/experiencias",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pessoas",
+                "{{pessoaId}}",
+                "experiencias"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Projetos da pessoa",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/pessoas/{{pessoaId}}/projetos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pessoas",
+                "{{pessoaId}}",
+                "projetos"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Habilidades da pessoa",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/pessoas/{{pessoaId}}/habilidades",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pessoas",
+                "{{pessoaId}}",
+                "habilidades"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Filtrar projetos por pessoa (query)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/projetos?pessoa_id={{pessoaId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projetos"
+              ],
+              "query": [
+                {
+                  "key": "pessoa_id",
+                  "value": "{{pessoaId}}"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Vincular habilidade ao projeto (N:N)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/projetos/{{projetoId}}/habilidades",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projetos",
+                "{{projetoId}}",
+                "habilidades"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"habilidade_id\": \"{{habilidadeId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 201', () => pm.response.to.have.status(201));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Habilidades do projeto",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/projetos/{{projetoId}}/habilidades",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projetos",
+                "{{projetoId}}",
+                "habilidades"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Projetos que usam a habilidade",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/habilidades/{{habilidadeId}}/projetos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "habilidades",
+                "{{habilidadeId}}",
+                "projetos"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Desvincular habilidade do projeto",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/projetos/{{projetoId}}/habilidades/{{habilidadeId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projetos",
+                "{{projetoId}}",
+                "habilidades",
+                "{{habilidadeId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Pessoas",
+      "item": [
+        {
+          "name": "Listar Pessoas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/pessoas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pessoas"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Buscar Pessoas por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/pessoas/{{pessoaId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pessoas",
+                "{{pessoaId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Criar (Pessoas)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/pessoas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pessoas"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Pessoa de Teste\",\n  \"email\": \"teste{{$timestamp}}@exemplo.com\",\n  \"telefone\": \"(81) 90000-0000\",\n  \"cidade\": \"Olinda\",\n  \"resumo\": \"Currículo criado pelo Postman.\",\n  \"linkedin\": \"https://linkedin.com/in/teste\",\n  \"github\": \"https://github.com/teste\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 201', () => pm.response.to.have.status(201));",
+                  "const j = pm.response.json();",
+                  "pm.collectionVariables.set('pessoaId', j.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Atualizar (Pessoas)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/pessoas/{{pessoaId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pessoas",
+                "{{pessoaId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cidade\": \"Recife\",\n  \"resumo\": \"Resumo atualizado pelo Postman.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Remover (Pessoas)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/pessoas/{{pessoaId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pessoas",
+                "{{pessoaId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Formacoes",
+      "item": [
+        {
+          "name": "Listar Formacoes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/formacoes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "formacoes"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Buscar Formacoes por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/formacoes/{{formacaoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "formacoes",
+                "{{formacaoId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Criar (Formacoes)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/formacoes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "formacoes"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pessoa_id\": \"{{pessoaId}}\",\n  \"instituicao\": \"Instituição Teste\",\n  \"curso\": \"Curso Teste\",\n  \"nivel\": \"Graduação\",\n  \"data_inicio\": \"2022-02-01\",\n  \"data_fim\": \"2026-12-15\",\n  \"descricao\": \"Formação criada pelo Postman.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 201', () => pm.response.to.have.status(201));",
+                  "const j = pm.response.json();",
+                  "pm.collectionVariables.set('formacaoId', j.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Atualizar (Formacoes)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/formacoes/{{formacaoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "formacoes",
+                "{{formacaoId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"curso\": \"Curso Teste (atualizado)\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Remover (Formacoes)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/formacoes/{{formacaoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "formacoes",
+                "{{formacaoId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Experiencias",
+      "item": [
+        {
+          "name": "Listar Experiencias",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/experiencias",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "experiencias"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Buscar Experiencias por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/experiencias/{{experienciaId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "experiencias",
+                "{{experienciaId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Criar (Experiencias)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/experiencias",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "experiencias"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pessoa_id\": \"{{pessoaId}}\",\n  \"empresa\": \"Empresa Teste\",\n  \"cargo\": \"Desenvolvedor\",\n  \"data_inicio\": \"2024-01-01\",\n  \"atual\": true,\n  \"descricao\": \"Experiência criada pelo Postman.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 201', () => pm.response.to.have.status(201));",
+                  "const j = pm.response.json();",
+                  "pm.collectionVariables.set('experienciaId', j.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Atualizar (Experiencias)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/experiencias/{{experienciaId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "experiencias",
+                "{{experienciaId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cargo\": \"Desenvolvedor Pleno\",\n  \"atual\": false,\n  \"data_fim\": \"2025-01-01\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Remover (Experiencias)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/experiencias/{{experienciaId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "experiencias",
+                "{{experienciaId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Projetos",
+      "item": [
+        {
+          "name": "Listar Projetos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/projetos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projetos"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Buscar Projetos por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/projetos/{{projetoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projetos",
+                "{{projetoId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Criar (Projetos)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/projetos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projetos"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pessoa_id\": \"{{pessoaId}}\",\n  \"titulo\": \"Projeto Teste\",\n  \"descricao\": \"Projeto criado pelo Postman.\",\n  \"url_repositorio\": \"https://github.com/teste/projeto\",\n  \"data_inicio\": \"2025-01-01\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 201', () => pm.response.to.have.status(201));",
+                  "const j = pm.response.json();",
+                  "pm.collectionVariables.set('projetoId', j.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Atualizar (Projetos)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/projetos/{{projetoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projetos",
+                "{{projetoId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Projeto Teste (atualizado)\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Remover (Projetos)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/projetos/{{projetoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projetos",
+                "{{projetoId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Habilidades",
+      "item": [
+        {
+          "name": "Listar Habilidades",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/habilidades",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "habilidades"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Buscar Habilidades por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/habilidades/{{habilidadeId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "habilidades",
+                "{{habilidadeId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Criar (Habilidades)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/habilidades",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "habilidades"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pessoa_id\": \"{{pessoaId}}\",\n  \"nome\": \"Node.js\",\n  \"nivel\": \"Intermediário\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 201', () => pm.response.to.have.status(201));",
+                  "const j = pm.response.json();",
+                  "pm.collectionVariables.set('habilidadeId', j.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Atualizar (Habilidades)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/habilidades/{{habilidadeId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "habilidades",
+                "{{habilidadeId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nivel\": \"Avançado\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Remover (Habilidades)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/habilidades/{{habilidadeId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "habilidades",
+                "{{habilidadeId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
